@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 Days of Colorful Birthday Wishes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .message-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .day-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .day-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .message {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+        .love-sticker {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .love-sticker.show {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        @media (max-width: 600px) {
+            .day-card {
+                width: 80px;
+                height: 80px;
+                font-size: 20px;
+            }
+            .message {
+                font-size: 20px;
+            }
+            .love-sticker {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>20 Days of Colorful Birthday Wishes</h1>
+    <div class="message-container" id="messageContainer"></div>
+
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <p id="modalMessage" class="message"></p>
+            <svg class="love-sticker" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 88.9L42.8 82.2C17.1 59.1 0 43.9 0 25.7C0 11.3 11.3 0 25.7 0C33.8 0 41.6 3.8 47.1 9.9C52.6 3.8 60.4 0 68.5 0C82.9 0 94.2 11.3 94.2 25.7C94.2 43.9 77.1 59.1 51.4 82.2L50 83.6L48.6 82.2" fill="#FF69B4"/>
+                <text x="50" y="120" font-size="16" text-anchor="middle" fill="#FF69B4">I love you</text>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "The countdown begins! Just wanted to start by telling you how much you mean to me. You’re more than a friend—you’re a part of my heart, and I’m so lucky to have you. Love you AISHU ❤️",
+            "Another day closer to your big day! Thank you for being you—the one who lifts me up, makes me laugh, and shows me what true friendship is. I’m here for you, always. Love you  ❤️",
+            "Every day I’m grateful for you. You’re not just loved; you’re cherished beyond words. Never forget how important you are in my life. Love you ❤️",
+            "Today’s reminder: you are worthy of all the love, joy, and support this world has to offer. Lean on me anytime; I’ll always be here for you. Love you ❤️",
+            "You make everything better, just by being in it. I am so grateful for the way you light up my life. I love you deeply, and I’m here for you through anything. Love you ❤️",
+            "We’re getting closer! Thank you for being the amazing person you are. The world is better with you in it, and I’m honored to be a part of your life. Love you ❤️",
+            "Only 13 days left! You have this incredible ability to make everything feel brighter. You’re so loved, and I’ll be here for you through all of life’s journeys. Love you ❤️",
+            "Today, just know this: you are worthy, valued, and deeply loved. You mean the world to me, and I’m grateful every day for our friendship.Love you ❤️",
+            "Counting down to your birthday makes me think of all the laughs, talks, and memories we’ve shared. You’re irreplaceable, and I’m here for you always.(yeh bolte hue toh mai thakti hi nahi hun 😂)",
+            "Halfway there! Your kindness and strength make me proud to know you. I’ll be by your side for every milestone, every high and low.Love you ❤️",
+            "You are a one-of-a-kind soul, and I am so lucky to call you my friend. Your presence is priceless to me, and I’ll always have your back. Love you ❤️",
+            "Only 8 days left! I love you so much for the joy you bring into my life. Never doubt your worth—you’re truly amazing, and I’m here for anything you need.Love you ❤️",
+            "Thank you for being the kind of friend who’s always there. I want you to know you can rely on me just as much, forever and always.Love you ❤️",
+            "One week to go! You have a beautiful heart and a light that can’t be matched. I’m grateful every day to have you as my friend.Love you ❤️",
+            "Five days until we celebrate you! Thank you for filling my world with so much warmth and laughter. I’m here for you through every moment, good or bad. Love you ❤️",
+            "Four days left, and I can’t wait to celebrate you! You’re not just a friend; you’re family to me. I’m always here if you need a shoulder to lean on. Love you ❤️",
+            "Only three days to go! Remember, you are truly loved for who you are. I’ll be here for you, no matter what. You’re never alone. Love you ❤️",
+            "Two days left! As we get closer, I just want you to know you’re cherished beyond measure. Your worth is immense, and I’ll remind you of it always. Love you ❤️",
+            "Tomorrow’s your big day! I’m so excited to celebrate the amazing person you are. Thank you for being my friend, my confidant, my rock. I’m always here for you. Love you ❤️",
+            "Happy 20th Birthday to the most incredible person I know! Today, I celebrate you—your kindness, strength, and the pure, beautiful soul that you are. You’ve been my light on dark days, my partner in laughter, and the reason I believe in true friendship. Knowing you has been one of the greatest blessings of my life. I am endlessly grateful for you and so proud of the person you’re becoming. May this year bring you all the happiness, love, and joy that you give so freely to others. Remember, I’m always here, through every high and every low. Here’s to you, Aishuu—today and always. I love you deeply! ❤️"
+        ];
+
+        const colors = [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
+            '#F06292', '#AED581', '#7986CB', '#4DB6AC', '#FFF176',
+            '#FFB74D', '#A1887F', '#90A4AE', '#9575CD', '#4DD0E1',
+            '#81C784', '#DCE775', '#FFD54F', '#F06292', '#4FC3F7'
+        ];
+
+        const messageContainer = document.getElementById('messageContainer');
+        const modal = document.getElementById('messageModal');
+        const modalMessage = document.getElementById('modalMessage');
+        const closeBtn = document.getElementById('closeModal');
+        const loveSticker = document.querySelector('.love-sticker');
+
+        messages.forEach((message, index) => {
+            const card = document.createElement('div');
+            card.classList.add('day-card');
+            card.textContent = `Day ${index + 1}`;
+            card.style.backgroundColor = colors[index];
+            card.setAttribute('aria-label', `Open message for Day ${index + 1}`);
+            card.addEventListener('click', () => showMessage(index));
+            messageContainer.appendChild(card);
+        });
+
+        function showMessage(index) {
+            modalMessage.textContent = messages[index];
+            modalMessage.style.color = colors[index];
+            modal.style.display = 'block';
+            loveSticker.classList.remove('show');
+            createConfetti();
+        }
+
+        closeBtn.onclick = function() {
+            loveSticker.classList.add('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                loveSticker.classList.remove('show');
+            }, 1500);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                loveSticker.classList.remove('show');
+            }
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
